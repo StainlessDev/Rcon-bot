@@ -3,6 +3,7 @@ import Rcon from 'rcon-ts';
 import fs from 'fs';
 import path from 'path';
 import { Application, Client,Collection,Events, GatewayIntentBits,  REST, Routes, ApplicationCommandOptionType, Sticker} from 'discord.js';
+import { checkIgn } from './utils/ign-check';
 require('dotenv').config() // Load .env file
 
 let token = process.env.TOKEN; // Get the token from the environment
@@ -65,26 +66,29 @@ const rest = new REST({ version: '10' }).setToken(`${token}`);
 })();
 
 client.on('interactionCreate', async interaction => {
-  if (!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
 
-  if (interaction.commandName === 'whitelist') {
-    
-    const username = interaction.options.getString('username');
+    if (interaction.commandName === 'whitelist') {
+        
+        const username = interaction.options.getString('username');
 
-    if(!username) {
-        await interaction.reply('Please provide a username');
-        return;
-    } 
+        if(!username) {
+            await interaction.reply('Please provide a username');
+            return;
+        } 
+        checkIgn(username).then((res) => {
+            rcon.send(`whitelist add ${username}`).then((res) => {
+            interaction.reply(`${username} has been whitelisted`);
+        }).catch((err) => {
+            interaction.reply('Failed to whitelist user');
+        }); 
+        }).catch((err) => {
+            interaction.reply('INVALID USERNAME');
+        });
+    }
+});
 
-    rcon.send(`whitelist add ${username}`).then((res) => {
-        console.log(res)
-        interaction.reply(`${username} has been whitelisted`);
-    }).catch((err) => {
-        console.error(err);
-        interaction.reply('Failed to whitelist user');
-    });
-  }
-});   
+
 
 client.login(token);
 
