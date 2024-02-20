@@ -20,7 +20,7 @@ if(process.env.RCON_PASSWORD === undefined) {
 
 const rcon = new Rcon({
     host: `${process.env.RCON_IP}`,
-    port: 28082,
+    port: parseInt(process.env.RCON_PORT as string),
     password: process.env.RCON_PASSWORD as string 
 });
 
