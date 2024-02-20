@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 import Rcon from 'rcon-ts';
-import fs from 'fs';
-import path from 'path';
-import { Application, Client,Collection,Events, GatewayIntentBits,  REST, Routes, ApplicationCommandOptionType, Sticker} from 'discord.js';
+import { Client, GatewayIntentBits,  REST, Routes, ApplicationCommandOptionType,} from 'discord.js';
 import { checkIgn } from './utils/ign-check';
 require('dotenv').config() // Load .env file
 
