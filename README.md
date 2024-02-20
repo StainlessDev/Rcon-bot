@@ -1,2 +1,5 @@
-# Rcon-bot
- Node.js Bot for Minecraft Rcon 
+# Minecraft rcon discord bot
+
+
+Allows players to whitelist themselves from discord using /whitelist [username]
+

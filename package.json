@@ -1,0 +1,19 @@
+{
+  "name": "rcon-bot",
+  "version": "1.0.0",
+  "description": "Node.js Bot for Minecraft Rcon",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "ts-node-dev ./src/index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.4",
+    "rcon-ts": "^1.2.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
